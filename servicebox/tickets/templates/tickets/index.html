@@ -1,0 +1,10 @@
+Hello there {{request.user.first_name}}
+{% if latest_tickets_list %}
+    <ul>
+    {% for ticket in latest_tickets_list %}
+        <li><a href="/tickets/{{ ticket.id }}/">{{ ticket.id }} - {{ ticket.message }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tickets are available.</p>
+{% endif %}
