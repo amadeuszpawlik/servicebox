@@ -6,7 +6,7 @@ import operator
 
 from .models import Ticket
 
-class TicketListAll(ListView):
+class TicketListAllView(ListView):
 
 	paginate_by = 10
 	context_object_name = 'tickets_list'
@@ -44,7 +44,7 @@ class TicketListAll(ListView):
 
 		return query.order_by(order_by).filter(reduce(operator.or_, filter_by))
 
-class TicketListMy(TicketListAll):
+class TicketListMyView(TicketListAllView):
 
 	def get_mainlist(self):
 		return Ticket.objects.filter(assignee=self.request.user)
