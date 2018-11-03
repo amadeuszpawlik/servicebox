@@ -1,0 +1,11 @@
+<div class="timeline-object">
+    <table class="table table-stripped object">
+        <tbody>
+            <tr><td class="min"><b>Model</b></td><td>{{ ticket.referred_obj.product.name }}</td></tr>
+            <tr class="a"><td class="min"><b>Manufacturer</b></td><td>{{ ticket.referred_obj.product.manufacturer }}</td></tr>
+            <tr><td class="min"><b>Serial no</b></td><td>{{ ticket.referred_obj.serial_no }}</td></tr>
+            <tr class="a"><td class="min"><b>Customer</b></td><td>{{ ticket.customer.name }}</td></tr>
+            <tr><td class="min"><b>Location</b></td><td>{{ ticket.customer.adr_city }}</td></tr>
+        </tbody>
+    </table>
+</div>

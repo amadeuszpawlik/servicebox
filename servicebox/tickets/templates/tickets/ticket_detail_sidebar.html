@@ -1,0 +1,28 @@
+<div class="col-sm-3">
+    <div class="sidebar">
+        <div class="sidebar-object">
+            <div class="sidebar-object-heading"><a href="#"> Object <span class="glyphicon glyphicon-cog icon"></span></a></div>
+            <div class="sidebar-object-body">
+              {% if ticket.referred_obj %}
+                <h4><span class="label label-warning" style="background-color: {{ ticket.referred_obj.product.tag_color }}">{{ ticket.referred_obj.product.name }}</span><a href="#" class="object-link"><small><code><span class="glyphicon glyphicon-barcode"></span> {{ticket.referred_obj.serial_no}}</code></small></a><a href="#"><span class="glyphicon glyphicon-trash icon"></span></a></h4>
+              {%else%}
+              None yet<br>
+              {%endif%}
+            </div>
+        </div>
+        <div class="sidebar-object-spacer"></div>
+        <div class="sidebar">
+            <div class="sidebar-object">
+                <div class="sidebar-object-heading"><a href="#"> Assignees <span class="glyphicon glyphicon-magnet icon"></span></a></div>
+                <div class="sidebar-object-body">
+                  {% if ticket.assignee %}
+                    <a href="#" class="user">{{ ticket.assignee.first_name }} {{ ticket.assignee.last_name }}</a><a href="#"><span class="glyphicon glyphicon-trash icon"></span></a><br>
+                
+                {%else%}
+                  None yet - <a href="#">assign yourself</a><br>
+                {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

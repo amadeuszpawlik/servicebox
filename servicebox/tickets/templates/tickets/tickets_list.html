@@ -1,17 +1,6 @@
 {% extends 'base.html' %}
 {% load ticket_filters %}
 {% block content %}
-<p>
-	<ul class="nav nav-tabs" role="tablist">
-	  {% url 'tickets_all' as tickets_all_url %}
-	  <li role="presentation" {% ifequal request.path tickets_all_url %}class="active"{%endifequal%}><a href="{{tickets_all_url}}"><span class="glyphicon glyphicon-home"></span> All tickets</a></li>
-	  {% url 'tickets_my' as tickets_my_url %}
-	  <li role="presentation" {% ifequal request.path tickets_my_url %}class="active"{%endifequal%}><a href=" {{tickets_my_url}}"><span class="glyphicon glyphicon-tags"></span> My tickets </a></li>
-	  <li role="presentation"><a href="#"><span class="glyphicon glyphicon-tower"></span> Customers</a></li>
-	  <li role="presentation"><a href="#"><span class="glyphicon glyphicon-book"></span> Products</a></li>
-	  <li role="presentation"><a href="#"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-	</ul>
-</p>
 
 <p>
 	<div class="row">
@@ -37,7 +26,7 @@
 	          </li>
 	          {% for ticket in tickets_list %}
 	          <a class="list-group-item" >
-	              <span class="glyphicon glyphicon-{% if ticket.closed %}ok{%else%}exclamation{%endif%}-sign icon"></span><object><a href="issue-assigned.html" class="link-gray-dark h4">{{ ticket.customer.name }} · {{ ticket.customer.adr_street }} · {{ ticket.customer.adr_city }}</a></object>{% if ticket.referred_obj.product.id %}<span class="label label-warning" style="background-color: {{ ticket.referred_obj.product.tag_color }}">{{ ticket.referred_obj.product.name }}</span>{%endif%}
+	              <span class="glyphicon glyphicon-{% if ticket.closed %}ok{%else%}exclamation{%endif%}-sign icon"></span><object><a href="{% url 'ticket_detail' ticket.id %}" class="link-gray-dark h4">{{ ticket.customer.name }} · {{ ticket.customer.adr_street }} · {{ ticket.customer.adr_city }}</a></object>{% if ticket.referred_obj.product.id %}<span class="label label-warning" style="background-color: {{ ticket.referred_obj.product.tag_color }}">{{ ticket.referred_obj.product.name }}</span>{%endif%}
 	              <div class="mt-1 text-small text-gray">
 	                  <span clas="opened-by-footnote">#{{ ticket.internal_id|stringformat:"05d"  }} opened {{ ticket.created|timesince|upto:','}} ago by <object><a href="#" id="opened-by-profile"> {{ ticket.reporter }}</a></object>
 	                  	{% if ticket.assignee %}

@@ -70,6 +70,17 @@
             <h3><span class=" glyphicon glyphicon-chevron-right"></span> {{request.user.company.name}}</h3>
         </div>
 
+        <p>
+            <ul class="nav nav-tabs" role="tablist">
+              {% url 'tickets_all' as tickets_all_url %}
+              <li role="presentation" {% ifequal request.path tickets_all_url %}class="active"{%endifequal%}><a href="{{tickets_all_url}}"><span class="glyphicon glyphicon-home"></span> All tickets</a></li>
+              {% url 'tickets_my' as tickets_my_url %}
+              <li role="presentation" {% ifequal request.path tickets_my_url %}class="active"{%endifequal%}><a href=" {{tickets_my_url}}"><span class="glyphicon glyphicon-tags"></span> My tickets </a></li>
+              <li role="presentation"><a href="#"><span class="glyphicon glyphicon-tower"></span> Customers</a></li>
+              <li role="presentation"><a href="#"><span class="glyphicon glyphicon-book"></span> Products</a></li>
+              <li role="presentation"><a href="#"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+            </ul>
+        </p>
       
         {% block content %}
         {% endblock %}

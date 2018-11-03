@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from functools import reduce
@@ -48,3 +48,7 @@ class TicketListMyView(TicketListAllView):
 
 	def get_mainlist(self):
 		return Ticket.objects.filter(assignee=self.request.user)
+
+class TicketDetailView(DetailView):
+	model = Ticket
+	context_object_name = 'ticket'

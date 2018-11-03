@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load ticket_filters %}
+{% block content %}
+<p>
+    <div class="row underline">
+        <div class="col-sm-12">
+            <span class="issue-title pull-left">{{ ticket.customer.name }} · {{ ticket.customer.adr_street }} · {{ ticket.customer.adr_city }}</span>
+            <span class="issue-number pull-left">#{{ ticket.internal_id|stringformat:"05d" }} </span>
+        </div>
+        <div class="col-sm-12">
+            <div class="issue-meta pull-left">
+                <h4><span class="label label-success"> <span class="glyphicon glyphicon-{% if ticket.closed %}ok{%else%}exclamation{%endif%}-sign"></span> Open</span> <a href="#" class="user">{{ ticket.reporter }}</a> opened this issue {{ ticket.created|timesince|upto:','}} ago <small>({{ ticket.created|date:'Y-m-d H:i' }})</small></h4>
+            </div>
+        </div>
+    </div>
+</p>
+
+      <p>
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="col-sm-9">
+                  {% if ticket.referred_obj.serial_no %}
+                  <div class="timeline-event">
+                      <div class="dot"> <span class="glyphicon glyphicon-barcode"></span></div>
+                      <a href="#" class="user">{{ticket.reporter}}</a> stated "{{ ticket.referred_obj.serial_no }}" as the object
+                  </div>
+                  <div class="timeline-event">
+                      <div class="dot"> <span class="glyphicon glyphicon-search"></span></div>
+                      We've found a following matching object:
+                      {% include 'tickets/ticket_detail_referred_obj.html' %}
+                  </div>
+                  {% endif %}
+                  <div class="panel panel-gray">
+                      <div class="panel-heading">
+                          <h3 class="panel-title"><a href="#" class="user">{{ ticket.reporter }}</a> wrote {{ ticket.created|timesince|upto:','}} ago <small>({{ ticket.created|date:'Y-m-d H:i' }})</small></h3>
+                      </div>
+                      <div class="panel-body">
+                        {{ ticket.message }}
+                      </div>
+                  </div>
+                  
+                  <div class="timeline-filler"></div>
+                  <div class="timeline-footer"></div>
+                  <div class="timeline-user-action">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                              Comment
+                          </div>
+                          <div class="panel-body">
+                              <form>
+                              <div class="form-group">
+                              <textarea class="form-control" rows="5" id="comment" placeholder="Write your comment here..."></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-danger pull-right">Comment and close</button>
+                              <button type="submit" class="btn btn-primary pull-right">Comment</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% include 'tickets/ticket_detail_sidebar.html' %}
+          </div><!-- /.col-sm-12 -->
+      </div>
+      </p>
+{% endblock content %}

@@ -162,6 +162,7 @@ div.dot {
 
 div.dot span.glyphicon {
     vertical-align: middle;
+    padding-top: 5px;
 }
 
 div.timeline-object {
