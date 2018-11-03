@@ -19,20 +19,29 @@
 
   <body class="text-center">
     <form id="login-form" class="form-signin" method="post" action="{% url 'login' %}">
+      <h1 class="form-signin-heading">ServiceBox</h1>
+      <h2 class="form-signin-heading">Please sign in</h2>
+      
       {% csrf_token %}
+      
       <label for="id_username" class="sr-only">Email address</label>
       <input type="email" id="id_username" name="username" class="form-control" placeholder="Email address" required autofocus>
+      
       <label for="id_password" class="sr-only">Password</label>
       <input type="password" id="id_password" name="password" class="form-control" placeholder="Password" required>
+      
+
       {% if form.errors %}
-            <p class="label label-danger">
-                Your username and password didn't match.
-                Please try again.
-            </p>
+      <div class="alert alert-danger" role="alert">
+          Your username and password didn't match.
+          Please try again.
+      </div>
       {% endif %}
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       <input type="hidden" name="next" value="{{ next }}" />
-      <p class="mt-5 mb-3 text-muted">ServiceBox &copy; 2018</p>
+      
+      <p class="mt-5 mb-3 text-muted company-footer">ServiceBox &copy; 2018</p>
     </form>
   </body>
 </html>

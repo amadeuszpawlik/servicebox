@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 requests = "*"
 django = "*"
+django-filters = "*"
+django-filter = "*"
 
 [dev-packages]
 

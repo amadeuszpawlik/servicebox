@@ -1,0 +1,296 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+li.list-group-item.header {
+    background-color: #F5F5F5;
+    padding-left: 16px;
+    font-size: 14px;
+}
+
+div.table-list-header-filter {
+    font-weight: 400;
+    position: relative;
+    display: inline-block; padding-top: 8px; padding-bottom: 8px;
+}
+
+a.btn-link.selected {
+    color: #24292e;
+    font-weight: 600;
+}
+
+a.btn-link {
+    color: #586069;
+}
+
+a.btn-link:hover {
+    text-decoration:none;
+    color: #24292e;
+}
+
+a.btn-link + a.btn-link {
+    margin-left: 10px;
+}
+
+span.icon {
+    margin-right: 4px;
+}
+
+a.list-group-item span.icon.glyphicon-exclamation-sign {
+    color: #28a745;
+}
+
+a.list-group-item span.icon.glyphicon-ok-sign {
+    color: #cb2431;
+}
+
+a.list-group-item a.link-gray-dark {
+    color: #24292e;
+    font-weight: 600;
+}
+
+
+a.list-group-item a.link-gray-dark:hover {
+    color: #337ab7;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a.list-group-item span.label {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.paginate-container {
+    text-align: center;
+}
+
+div.paginator {
+    display: inline-block;
+}
+
+span.issue-title {
+    font-weight: 400;
+    line-height: 1.125;
+    word-wrap: break-word;
+    font-size: 32px;
+}
+
+span.issue-number {
+    font-weight: 300;
+    line-height: 1.125;
+    font-size: 32px;
+    color: #a3aab1;
+    margin-left: 15px;
+}
+
+div.issue-meta h4 {
+    font-size: 14px;
+    line-height: 20px;
+    color: #586069;
+}
+
+div.issue-meta h4 span.label {
+    font-size: 16px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+div.row.underline {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 9px;
+}
+
+div.panel.panel-gray {
+    border-color: #ddd;
+    margin-bottom: 0px;
+}
+
+div.panel.panel-gray div.panel-heading {
+    background-color: #F5F5F5;
+    border-color: #ddd;
+}
+
+div.timeline-event {
+    margin-left: 30px;
+    border-left: 2px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
+    min-height: 50px;
+    line-height: 20px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+div.timeline-filler {
+    margin-left: 30px;
+    border-left: 2px solid #f5f5f5;
+    height: 20px;
+}
+
+div.timeline-footer {
+    height: 2px;
+    border-bottom: 2px solid #f5f5f5;
+    margin-bottom: 20px;
+}
+
+div.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #F5F5F5;
+    border-radius: 50%;
+    display: inline-table;
+    text-align: center;
+    margin-left: -28px;
+    margin-right: 10px;
+}
+
+div.dot span.glyphicon {
+    vertical-align: middle;
+}
+
+div.timeline-object {
+    background-color: #F6F8FA;
+}
+
+table.object.table.table-stripped td {
+    border-top: 0px;
+}
+
+table.object.table.table-stripped th {
+    border-top: 0px;
+}
+
+table.object tr {
+    background-color: #F6F8FA;
+}
+table.object tr.a {
+    background-color: #ffffff;
+}
+
+table.object td.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+div.sidebar {
+    padding-top: 15px;
+}
+
+div.sidebar-object-heading {
+    font-size: 14px;
+    line-height: 16px;
+    color: #586069;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+div.sidebar-object-body {
+    font-size: 14px;
+    line-height: 22px;
+    color: #586069;
+}
+
+div.sidebar-object-spacer {
+    height: 15px;
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 14px;
+}
+div.sidebar-object-body a.assignee {
+    color: #333;
+    font-weight: 600;
+}
+div.sidebar-object-body a span.icon {
+    margin-left: 10px;
+    font-size: 11px;
+    color: #586069;
+}
+
+a.user {
+    color: #333;
+    font-weight: 600;
+}
+
+button.btn + button.btn {
+    margin-right: 10px;
+}
+
+div.timeline-user-action textarea.form-control {
+    background-color: #F6F8Fa;
+    resize: vertical;
+    min-height: 120px;
+    height: 120px;
+}
+
+div.timeline-user-action div.panel-heading {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+div.card {
+    text-align: center;
+}
+
+h4.card-header {
+    line-height: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+div.row.card-deck {
+    width: 100%;
+}
+
+div.row.card-deck div.card-holder div.card ul.pros {
+    min-height: 120px;
+}
+
+div.row.card-deck div.card-holder div.card btn {
+    margin-top: 40px;
+}
+
+div.pricing-header {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+div.sidebar-object-heading span.icon {
+    margin-left: 25px;
+}
+
+div.sidebar-object-body a.object-link {
+    margin-left: 5px;
+}
+
+div.sidebar-object-body a.object-link:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div.navbar span.user_footer {
+    color: #fff;
+    padding: 15px 10px;
+    line-height: 20px;  
+    position: relative; 
+    display: block;
+}
+
+

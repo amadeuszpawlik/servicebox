@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 
-from companies.models import Company
 from django.contrib.auth.models import BaseUserManager
 
 
@@ -53,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=30)
     role_list = (('admin', 'admin'), ('technician', 'tech'))
     role = models.CharField(choices=role_list, max_length=5, default = 'tech')
-    company = models.ForeignKey(Company,
+    company = models.ForeignKey('companies.Company',
                                 related_name='users',
                                 null=True,
                                 blank=True,

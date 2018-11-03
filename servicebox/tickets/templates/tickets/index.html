@@ -1,10 +1,82 @@
-Hello there {{request.user.first_name}}
-{% if latest_tickets_list %}
-    <ul>
-    {% for ticket in latest_tickets_list %}
-        <li><a href="/tickets/{{ ticket.id }}/">{{ ticket.id }} - {{ ticket.message }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No tickets are available.</p>
-{% endif %}
+{% extends 'base.html' %}
+{% load ticket_filters %}
+{% block content %}
+<p>
+	<ul class="nav nav-tabs" role="tablist">
+	  {% url 'tickets_all' as tickets_all_url %}
+	  <li role="presentation" {% ifequal request.path tickets_all_url %}class="active"{%endifequal%}><a href="{{tickets_all_url}}"><span class="glyphicon glyphicon-home"></span> All tickets</a></li>
+	  {% url 'tickets_my' as tickets_my_url %}
+	  <li role="presentation" {% ifequal request.path tickets_my_url %}class="active"{%endifequal%}><a href=" {{tickets_my_url}}"><span class="glyphicon glyphicon-tags"></span> My tickets </a></li>
+	  <li role="presentation"><a href="#"><span class="glyphicon glyphicon-tower"></span> Customers</a></li>
+	  <li role="presentation"><a href="#"><span class="glyphicon glyphicon-book"></span> Products</a></li>
+	  <li role="presentation"><a href="#"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+	</ul>
+</p>
+
+<p>
+	<div class="row">
+	  <div class="col-sm-12">
+	      <button type="button" class="btn btn-success pull-right">Add ticket</button>
+	  </div>
+	</div>
+</p>
+
+<p>
+	<div class="row">
+	  <div class="col-sm-12">
+	      <ul class="list-group">
+	          <li class="list-group-item header">
+	              <div class="table-list-header-filter">
+	                  <a href="?list=open" class="btn-link {% if list_type == 'open' %}selected{%endif%}"><span class="glyphicon glyphicon-exclamation-sign icon"></span>{{open_count}} Open</a>
+	                  {% ifnotequal request.path tickets_my_url %}
+	                  <a href="?list=unassigned" class="btn-link {% if list_type == 'unassigned' %}selected{%endif%}"><span class="glyphicon glyphicon-remove icon"></span>{{unassigned_count}} Unassigned</a>
+	                  {% endifnotequal%}
+	                  <a href="?list=closed" class="btn-link {% if list_type == 'closed' %}selected{%endif%}"><span class="glyphicon glyphicon-ok-sign icon"></span>{{closed_count}} Closed</a>
+	              </div>
+
+	          </li>
+	          {% for ticket in tickets_list %}
+	          <a class="list-group-item" >
+	              <span class="glyphicon glyphicon-{% if ticket.closed %}ok{%else%}exclamation{%endif%}-sign icon"></span><object><a href="issue-assigned.html" class="link-gray-dark h4">{{ ticket.customer.name }} · {{ ticket.customer.adr_street }} · {{ ticket.customer.adr_city }}</a></object>{% if ticket.referred_obj.product.id %}<span class="label label-warning" style="background-color: {{ ticket.referred_obj.product.tag_color }}">{{ ticket.referred_obj.product.name }}</span>{%endif%}
+	              <div class="mt-1 text-small text-gray">
+	                  <span clas="opened-by-footnote">#{{ ticket.internal_id|stringformat:"05d"  }} opened {{ ticket.created|timesince|upto:','}} ago by <object><a href="#" id="opened-by-profile"> {{ ticket.reporter }}</a></object>
+	                  	{% if ticket.assignee %}
+	                  		, assigned to <object><a href="#" id="opened-by-profile"> {{ticket.assignee.first_name}} {{ticket.assignee.last_name}}</a></object>
+	                  	{% endif %}
+	                  </span>
+	              </div>
+	          </a>
+	          {% endfor %}
+	      </ul>
+	  </div><!-- /.col-sm-12 -->
+	</div>
+	{% if is_paginated %}
+	<div class="paginate-container">
+		<div class="paginator">
+		  <ul class="pagination justify-content-center">
+		  	  {% if page_obj.has_previous %}
+		      <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.previous_page_number %}" tabindex="-1">
+		      {% else %}
+		      <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">
+		      {% endif %}
+		          &laquo;</a>
+		      </li>
+		      {% for i in paginator.page_range %}
+		      {% if page_obj.number == i %}<li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+		      {% else %}<li class="page-item"><a class="page-link" href="?{% url_replace page=i %}">{{ i }}</a></li>
+		      {% endif %}
+		      {% endfor %}
+		      {% if page_obj.has_next %}
+		      <li class="page-item"><a class="page-link" href="?{% url_replace page=page_obj.next_page_number %}">
+		      	{% else %}
+		      <li class="page-item disabled"><a class="page-link" href="#">
+		      {% endif %}
+		      	&raquo;</a>
+		      </li>
+		  </ul>
+		</div>
+	</div>
+	{% endif %}
+</p>
+
+{% endblock content %}

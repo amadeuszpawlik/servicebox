@@ -35,12 +35,15 @@ INSTALLED_APPS = [
     'customers.apps.CustomersConfig',
     'tickets.apps.TicketsConfig',
     'users.apps.UsersConfig',
+    'products.apps.ProductsConfig',
+    'objects.apps.ObjectsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +73,9 @@ TEMPLATES = [
         },
     },
 ]
-LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/tickets'
 
 WSGI_APPLICATION = 'servicebox.wsgi.application'
 
