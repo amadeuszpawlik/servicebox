@@ -9,7 +9,13 @@
         </div>
         <div class="col-sm-12">
             <div class="issue-meta pull-left">
-                <h4><span class="label label-success"> <span class="glyphicon glyphicon-{% if ticket.closed %}ok{%else%}exclamation{%endif%}-sign"></span> Open</span> <a href="#" class="user">{{ ticket.reporter }}</a> opened this issue {{ ticket.created|timesince|upto:','}} ago <small>({{ ticket.created|date:'Y-m-d H:i' }})</small></h4>
+                <h4>
+                  {% if ticket.closed %}
+                  <span class="label label-danger"> <span class="glyphicon glyphicon-ok-sign"></span> Closed</span>
+                  {% else %}
+                  <span class="label label-success"> <span class="glyphicon glyphicon-exclamation-sign"></span> Open</span>
+                  {% endif %}
+                  <a href="#" class="user">{{ ticket.reporter }}</a> opened this issue {{ ticket.created|timesince|upto:','}} ago <small>({{ ticket.created|date:'Y-m-d H:i' }})</small></h4>
             </div>
         </div>
     </div>
@@ -26,7 +32,7 @@
                   </div>
                   <div class="timeline-event">
                       <div class="dot"> <span class="glyphicon glyphicon-search"></span></div>
-                      We've found a following matching object:
+                      Object information:
                       {% include 'tickets/ticket_detail_referred_obj.html' %}
                   </div>
                   {% endif %}

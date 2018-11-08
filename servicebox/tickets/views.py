@@ -1,5 +1,4 @@
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from functools import reduce
 import operator
