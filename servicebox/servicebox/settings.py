@@ -75,8 +75,10 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/tickets'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'tickets_all'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 WSGI_APPLICATION = 'servicebox.wsgi.application'
 
