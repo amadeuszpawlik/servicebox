@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from customers.models import Customer
 from objects.models import Object
 from users.models import User
+from events.models import Event
 
 class Ticket(models.Model):
     internal_id = models.IntegerField(editable=False, default='0')
@@ -33,7 +34,10 @@ class Ticket(models.Model):
                                  on_delete=models.CASCADE)
 
     reporter = models.CharField(max_length=70, blank=False)
+    events = models.ManyToManyField(Event, blank=True)
 
+    def get_events(self):
+        return self.events.all().order_by("created")
 
     def save(self, *args, **kwargs):
         if not self.pk:

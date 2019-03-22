@@ -12,7 +12,6 @@ class TicketListAllView(ListView):
 	extra_context = {}
 
 	def get_filtering(self, override=None):
-		
 		if(override):
 			list_type = override
 		else:

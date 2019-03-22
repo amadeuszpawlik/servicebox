@@ -38,15 +38,44 @@
                   {% endif %}
                   <div class="panel panel-gray">
                       <div class="panel-heading">
-                          <h3 class="panel-title"><a href="#" class="user">{{ ticket.reporter }}</a> wrote {{ ticket.created|timesince|upto:','}} ago <small>({{ ticket.created|date:'Y-m-d H:i' }})</small></h3>
+                          <h3 class="panel-title">Original message by <a href="#" class="user">{{ ticket.reporter }}</a> {{ ticket.created|timesince|upto:','}} ago <small>({{ ticket.created|date:'Y-m-d H:i' }})</small></h3>
                       </div>
                       <div class="panel-body">
                         {{ ticket.message }}
                       </div>
                   </div>
-                  
+
                   <div class="timeline-filler"></div>
+
+                  {% for event in ticket.get_events %}
+                  {% if event.get_payload.get_type == "comment" %}
+                  {% with event.get_payload as comment %}
+                  <div class="panel panel-gray">
+                      <div class="panel-heading">
+                          <h3 class="panel-title"><a href="#" class="user">{{comment.author.first_name}} {{comment.author.last_name}}</a> commented on {{comment.created|timesince|upto:','}} <small>({{ comment.created|date:'Y-m-d H:i' }})</small></h3>
+                      </div>
+                      <div class="panel-body">
+                          {{comment.message}}
+                      </div>
+                  </div>
+                  <div class="timeline-filler"></div>
+                  {% endwith %}
+                  {% endif %}
+
+                  {% if event.get_payload.get_type == "assignment" %}
+                  {% with event.get_payload as assignment %}
+                  <div class="panel panel-gray">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">{{assignment.author.first_name}} {{assignment.author.last_name}}</h3> assigned {{assignment.assignee.first_name}} {{assignment.assignee.last_name}}
+                      </div>
+                  </div>
+                  <div class="timeline-filler"></div>
+                  {% endwith %}
+                  {% endif %}
+                  {% endfor %}
+
                   <div class="timeline-footer"></div>
+
                   <div class="timeline-user-action">
                       <div class="panel panel-default">
                           <div class="panel-heading">
